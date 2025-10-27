@@ -1,3 +1,283 @@
 <resources>
     <string name="app_name">Xontel DVR Demo</string>
+
+
+    <!--    <string name="enter_user_name">Input your User name</string>-->
+    <!--    <string name="clearLog">Clear Log</string>-->
+    <!--    <string name="login_mode">User Login</string>-->
+    <!--    <string name="local_mode">Local Mode</string>-->
+    <!--    <string name="umid_connect_mode">UMID Connect</string>-->
+    <!--    <string name="hint_password">Password</string>-->
+    <!--    <string name="login_success">Login Success</string>-->
+    <!--    <string name="play_m3u8">Play M3U8</string>-->
+    <!--    <string name="NPC_D_MPI_MON_ERROR_USER_PWD_ERROR"> User name or password error </string>-->
+
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="positive">Confirm</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Login return status codes -->
+    <string name="UNKNOWN_ERROR">Unknown error</string>
+    <string name="LOGIN_OK">Login successful</string>
+    <string name="no_right_login">No permission to log in</string>
+    <string name="NPC_D_MPI_MON_ERROR_SYS_ERROR">System error</string>
+    <string name="NPC_D_MPI_MON_ERROR_CONNECT_FAIL">Connection failed</string>
+    <string name="NPC_D_MPI_MON_ERROR_USERID_ERROR">Username error</string>
+    <string name="NPC_D_MPI_MON_ERROR_USERPWD_ERROR">Password error</string>
+    <string name="NPC_D_MPI_MON_ERROR_USER_PWD_ERROR">Username or password error</string>
+    <string name="NPC_D_MPI_MON_ERROR_CONNECTING">Connecting</string>
+    <string name="NPC_D_MPI_MON_ERROR_CONNECTED">Connected</string>
+    <string name="NPC_D_MPI_MON_ERROR_PLAY_FAIL">Playback failed</string>
+    <string name="NPC_D_MPI_MON_ERROR_FILE_NONENTITY">File does not exist</string>
+    <string name="NPC_D_MPI_MON_ERROR_EXEC_ORDER_CALL_FAIL">Command execution failed</string>
+    <string name="NPC_D_MPI_MON_ERROR_EXEC_ORDER_RET_FAIL">Command result failed</string>
+    <string name="NPC_D_MPI_MON_ERROR_ALLOC_RES_FAIL">Resource allocation failed</string>
+    <string name="NPC_D_MPI_MON_ERROR_NO_CONNECT_CAMERA">Camera not connected</string>
+    <string name="NPC_D_MPI_MON_ERROR_INNER_OP_FAIL">Internal operation failed</string>
+    <string name="NPC_D_MPI_MON_ERROR_PLAYING">Playing</string>
+    <string name="NPC_D_MPI_MON_ERROR_NO_PLAY">Not playing</string>
+    <string name="NPC_D_MPI_MON_ERROR_NONSUP_VENDOR">Unsupported manufacturer</string>
+    <string name="NPC_D_MPI_MON_ERROR_REJECT_ACCESS">Insufficient permissions</string>
+    <string name="NPC_D_MPI_MON_ERROR_CAMERA_OFFLINE">Camera offline</string>
+    <string name="NPC_D_MPI_MON_ERROR_ACCOUNT_LOGINED">Account already logged in</string>
+    <string name="NPC_D_MPI_MON_ERROR_ACCOUNT_HAVE_EXPIRED">Account expired</string>
+    <string name="NPC_D_MPI_MON_ERROR_ACCOUNT_NO_ACTIVE">Account not activated</string>
+    <string name="NPC_D_MPI_MON_ERROR_ACCOUNT_DEBT_STOP">Account suspended due to unpaid fees</string>
+    <string name="NPC_D_MPI_MON_ERROR_TIMESECT_NOT_ALLOW_CAMERA">Camera access not allowed at this time</string>
+    <string name="loading">Loading..</string>
+    <string name="login_succeed_no_data">Login successful, no devices!</string>
+    <string name="loadingText">Please wait!</string>
+    <string name="devicelist">Device List</string>
+    <string name="add_device">Add Device</string>
+    <string name="more">More</string>
+    <string name="function">Function</string>
+    <string name="add_succeed">Added Successfully</string>
+    <string name="add_failed">Addition Failed</string>
+    <string name="delete_device">Delete Device</string>
+    <string name="delete_succeed">Deleted Successfully</string>
+    <string name="delete_failed">Deletion Failed</string>
+    <string name="usererro">Username Error</string>
+    <string name="passworderro">Password Error</string>
+    <string name="time_out">Connection Timeout</string>
+    <string name="loginfail">Login Server Failed</string>
+    <string name="ready">Ready</string>
+    <string name="save">Save</string>
+    <string name="Isnotonline">Collection point offline</string>
+    <string name="networkerro">Network Error</string>
+    <string name="nodataerro">No Data</string>
+    <string name="error_code">Error Code</string>
+    <string name="read">Ready</string>
+    <string name="playing">Playing…</string>
+    <string name="pause">Pause</string>
+    <string name="stop">Stop</string>
+    <string name="stopping">Stopping…</string>
+    <string name="connect_success">Connection Successful</string>
+    <string name="connect_fail">Connection Failed</string>
+    <string name="connecting">Connecting…</string>
+    <string name="buffering">Buffering…</string>
+    <string name="no_data">No data on network</string>
+    <string name="unknown_error">Unknown Error</string>
+    <string name="protocal_error">Protocol Error</string>
+    <string name="net_error">Network Error</string>
+    <string name="exception_error">Exception Error</string>
+    <string name="unsupport_device">Unsupported Device</string>
+    <string name="max_channel">Exceeded Maximum Channels</string>
+    <string name="camera_offline">Collection Point Offline</string>
+    <string name="reconnect">Reconnect</string>
+    <string name="portserver">Port Mapping</string>
+    <string name="search_hint">Search</string>
+    <string name="search_result">Search Results</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="file_name">File Name</string>
+    <string name="event_type">Event Type</string>
+    <string name="load">Load</string>
+    <string name="searching">Searching…</string>
+    <string name="start_big_end">End time must be greater than start time</string>
+    <string name="not_found_record">No matching records found</string>
+    <string name="alarm_move">Motion Detection</string>
+    <string name="alarm_action_sensor">Sensitivity (1~6)</string>
+    <string name="get_parameters_failed">Failed to get device parameters</string>
+    <string name="modify_user">Modify Name</string>
+    <string name="modify_pass">Modify Password</string>
+    <string name="modify_device_name">Device Name:</string>
+    <string name="modify_ip">Modify IP Address</string>
+    <string name="dev_mac">MAC:</string>
+    <string name="search_netmask">Subnet Mask:</string>
+    <string name="search_ip">IP Address:</string>
+    <string name="search_getway">Gateway:</string>
+    <string name="old_password">Old Password:</string>
+    <string name="new_password">New Password:</string>
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="user_alias">Name:</string>
+    <string name="input_not_empty">Input cannot be empty</string>
+    <string name="DHCP">DHCP:</string>
+    <string name="state">Status:</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="wifi_info">Current Device WiFi: %1$s \nIP Address: %2$s \nSubnet Mask: %3$s \nGateway: %4$s</string>
+    <string name="dev_time">Device Time</string>
+    <string name="get_dev_ip">Get Device IP</string>
+    <string name="get_failed">Failed to retrieve device information</string>
+    <string name="get_dev_time">Get Device Time</string>
+    <string name="get_dev_storage">Get Device Storage Info</string>
+    <string name="dev_code">Device Code</string>
+    <string name="get_dev_code">Get Device Code Info</string>
+    <string name="dev_storage">Device Storage Management</string>
+    <string name="dev_storage_format_s">Partition No.: %1$s formatted successfully\n</string>
+    <string name="dev_storage_format_f">Partition No.: %1$s formatting failed\n</string>
+    <string name="dev_storage_format">Formatting&#8230;\n</string>
+    <string name="dev_storage_format_c">Are you sure you want to format?</string>
+    <string name="multiCh">Multi-Channel Settings</string>
+    <string name="smartLink">WiFi Quick Setup</string>
+    <string name="change_dev_pwd">Modify Device Password</string>
+    <string name="set_ok">Setting Successful</string>
+    <string name="set_fail">Setting Failed</string>
+    <string name="wifi_synac_to_device">Set WiFi to Device</string>
+    <string name="wifi_search">Rescan WiFi</string>
+    <string name="wifi_stop">Turn Off Device WiFi</string>
+    <string name="wifi_set_ip">Set IP</string>
+    <string name="wifi_enter_ssid">Enter WiFi Name</string>
+    <string name="wifi_enter_pass">Enter WiFi Password</string>
+    <string name="wifi_show_pass">Show Password</string>
+    <string name="wifi_auto_get_ip">Auto Obtain IP</string>
+    <string name="negative">Cancel</string>
+    <string name="main_category_video">Video Records</string>
+    <string name="delete">Delete</string>
+    <string name="pleaseCheck">Please Select</string>
+    <string name="delete_success">Deleted Successfully</string>
+    <string name="searching_device">Searching...</string>
+    <string name="add_search_local_device">Local Device List</string>
+    <string name="Imsi">000</string>
+    <string name="edit">Edit</string>
+    <string name="selectorAll">Select All</string>
+    <string name="server">Server:</string>
+    <string name="port">Port:</string>
+    <string name="search">Search Device</string>
+    <string name="umid">UMID:</string>
+    <string name="user">Username:</string>
+    <string name="password">Password:</string>
+    <string name="wifi_searching">Searching WiFi List...</string>
+    <string name="get_wifi_info">Retrieving WiFi Info...</string>
+    <string name="get_wifi_failed">Failed to Retrieve WiFi Info</string>
+    <string name="delete_video">Are you sure you want to delete this video?</string>
+    <string name="message">Message</string>
+    <string name="Okao">Ok</string>
+    <string name="none_files">No Files in Directory</string>
+    <string name="loading_list">Loading</string>
+    <string name="wait_list">Please Wait...</string>
+    <string name="NoSdcard">No SD Card Installed</string>
+    <string name="mainSavedphotos">Photos</string>
+    <string name="login_mode">Account Login</string>
+    <string name="local_mode">Guest Login</string>
+    <string name="wechat_mode">WeChat Login</string>
+    <string name="umid_connect_mode">UMID Direct Mode</string>
+    <string name="enter_user_name">Enter Username</string>
+    <string name="hint_password">Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_server">Enter Server</string>
+    <string name="clearLog">Clear Logs</string>
+    <string name="play_m3u8">Play M3U8</string>
+    <string name="door_pwd">Doorbell Password</string>
+    <string name="lock_pwd">Unlock Password</string>
+    <string name="device_option">Device Settings</string>
+    <string name="img_setting">Camera Settings</string>
+    <string name="unlocking_fail">Incorrect Password</string>
+    <string name="unlocking_success">Password Matched Successfully</string>
+    <string name="input_error_contains_space">Unlock password cannot contain spaces!</string>
+    <string name="input_error_length_error">Unlock password must be eight digits</string>
+    <string name="audio">Audio</string>
+    <string name="modify_success">Modification Successful</string>
+    <string name="pir_time">PIR Time</string>
+    <string name="power_mode">Power Saving Mode</string>
+    <string name="login_success">Login Successful</string>
+    <string name="logout_user">Account logged out, please log in again</string>
+    <string name="not_support_api">This feature is not supported!</string>
+    <string name="format_err">Format error, please modify and retry!</string>
+    <string name="outdate_relogin">Session expired, please log in again</string>
+    <string name="verify_failed">Verification Failed</string>
+    <string name="username_nonexistent">Username does not exist</string>
+    <string name="uid_exits_not_add_dev">UID already exists, cannot add device!</string>
+    <string name="register_fail_by_errcode">Registration failed, incorrect verification code</string>
+    <string name="email_address_error2">Invalid email address</string>
+    <string name="request_too_many_times">Too many requests, please try again later!</string>
+    <string name="network_err">Network error, please check your connection</string>
+    <string name="unknown_errors">Unknown error</string>
+    <string name="no_records">No recordings</string>
+    <string name="cloud_service">Cloud Service</string>
+    <string name="check_order">Check List</string>
+    <string name="order_list">Order List</string>
+    <string name="ys_statement">Cloud Storage Service Statement</string>
+    <string name="fail_to_getcloud_service">Failed to retrieve cloud storage service!</string>
+
+    <string-array name="pir_time">
+        <item>1s</item>
+        <item>5s</item>
+        <item>10s</item>
+        <item>20s</item>
+        <item>30s</item>
+        <item>60s</item>
+    </string-array>
+
+    <string-array name="open_array">
+        <item>Off</item>
+        <item>On</item>
+    </string-array>
+
+    <string-array name="record_event_type">
+        <item>All Records</item>
+        <item>Scheduled Recording</item>
+        <item>Manual Recording</item>
+        <item>Motion Recording</item>
+        <item>Alarm Recording</item>
+    </string-array>
+
+    <string-array name="array_power_mode">
+        <item>Normal Mode</item>
+        <item>Deep Power-Saving Mode</item>
+        <item>Night Power-Saving Mode</item>
+    </string-array>
+
+
+    <string name="add_tag_unknown_exception">Failed to set tag, unknown exception</string>
+    <string name="add_tag_success">API call successful</string>
+    <string name="add_tag_error_count">API call failed, too many tags, maximum limit is 200</string>
+    <string name="add_tag_error_frequency">Failed to set tag, request frequency too high</string>
+    <string name="add_tag_error_null">API call failed, tag is empty</string>
+    <string name="add_tag_error_repeat">Failed to set tag, duplicate tag</string>
+    <string name="add_tag_error_unbind">Failed to set tag, service not initialized successfully</string>
+    <string name="add_tag_error_not_online">Not logged in successfully yet</string>
+    <string name="add_tag_error_black_list">This app is blacklisted, please contact support!</string>
+    <string name="add_tag_error_exceed">Stored tags exceed the limit</string>
+
+    <string name="bind_alias_unknown_exception">Failed to bind alias, unknown exception</string>
+    <string name="bind_alias_success">Alias binding successful</string>
+    <string name="bind_alias_error_frequency">Failed to bind alias, request frequency limit exceeded</string>
+    <string name="bind_alias_error_param_error">Failed to bind alias, parameter error</string>
+    <string name="bind_alias_error_request_filter">Failed to bind alias, request filtered</string>
+    <string name="bind_alias_error_cid_lost">Failed to bind alias, CID not obtained</string>
+    <string name="bind_alias_error_connect_lost">Failed to bind alias, network error</string>
+    <string name="bind_alias_error_alias_invalid">Failed to bind alias, invalid alias</string>
+    <string name="bind_alias_error_sn_invalid">Failed to bind alias, invalid SN</string>
+
+    <string name="unbind_alias_unknown_exception">Failed to unbind alias, unknown exception</string>
+    <string name="unbind_alias_success">Alias unbinding successful</string>
+    <string name="unbind_alias_error_frequency">Failed to unbind alias, request frequency limit exceeded</string>
+    <string name="unbind_alias_error_param_error">Failed to unbind alias, parameter error</string>
+    <string name="unbind_alias_error_request_filter">Failed to unbind alias, request filtered</string>
+    <string name="unbind_alias_error_cid_lost">Failed to unbind alias, CID not obtained</string>
+    <string name="unbind_alias_error_connect_lost">Failed to unbind alias, network error</string>
+    <string name="unbind_alias_error_alias_invalid">Failed to unbind alias, invalid alias</string>
+    <string name="unbind_alias_error_sn_invalid">Failed to unbind alias, invalid SN</string>
+
+
+    <string name="playback">Playback</string>
+    <string name="select_channel">Select channel</string>
+    <string name="snap">Snap</string>
+    <string name="local_image">Local Images</string>
+    <string name="local_video">Local Videos</string>
+    <string name="search_wifi">搜索WIFI</string>
+    <string name="alarm_setting">Alarm setting</string>
+
 </resources>
