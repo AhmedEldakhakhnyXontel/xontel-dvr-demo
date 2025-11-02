@@ -1,5 +1,6 @@
 package com.example.xonteldvrdemo;
 
+import android.app.Application;
 import android.os.Handler;
 import android.text.TextUtils;
 
@@ -7,14 +8,12 @@ import com.Player.Core.PlayerClient;
 import com.Player.Core.PlayerCore;
 import com.Player.Core.Utils.CommenUtil;
 import com.Player.web.websocket.ClientCore;
-import com.context.HsUmApplication;
 import com.example.xonteldvrdemo.umeyesdk.entity.PlayNode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppMain extends HsUmApplication {
-	public static final String FILTER = "com.example.umeyesdk.RefreshData";
+public class AppMain extends Application {
 	private PlayerClient playerclient;
 	private List<PlayNode> nodeList;
 	public boolean isRun = false;
