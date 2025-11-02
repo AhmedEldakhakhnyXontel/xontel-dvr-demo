@@ -16,15 +16,10 @@ import java.util.List;
 
 public class AppMain extends Application {
 	private PlayerClient playerclient;
-	private List<PlayNode> nodeList;
 	public boolean isRun = false;
-	private int currentNodeId = 0; // 当前列表父节点的ID；
-	private Handler handler = new Handler();
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
-		nodeList = new ArrayList<PlayNode>();
 		ClientCore.getInstance().init(this);
 		PlayerCore.isNewRecordMode = true;
 //		PlayerCore.isFFMPEG_2_8_15 = false;
@@ -44,10 +39,8 @@ public class AppMain extends Application {
 		if (!isRun) {
 			isRun = true;
 			new Thread() {
-
 				@Override
 				public void run() {
-
 					while (isRun) {
 						String log = playerclient.CLTGetLogData(100);
 						if (!TextUtils.isEmpty(log)) {
@@ -55,7 +48,6 @@ public class AppMain extends Application {
 						}
 					}
 				}
-
 			}.start();
 		}
 	}
@@ -64,36 +56,6 @@ public class AppMain extends Application {
 		return playerclient;
 	}
 
-	public int getCurrentNodeId() {
-		return currentNodeId;
-	}
-
-	public void setCurrentNodeId(int currentNodeId) {
-		this.currentNodeId = currentNodeId;
-	}
-
-	public List<PlayNode> getNodeList() {
-		return nodeList;
-	}
-
-	public synchronized List<PlayNode> getDvrAndCamera() {
-		List<PlayNode> list = new ArrayList<PlayNode>();
-		for (int i = 0; i < nodeList.size(); i++) {
-			PlayNode dvrNode = nodeList.get(i);
-			if (dvrNode.IsDvr()) {
-				list.add(dvrNode);
-
-			} else if (dvrNode.isCamera()
-					&& TextUtils.isEmpty(dvrNode.getParentId())) {
-				list.add(dvrNode);
-			}
-		}
-		return list;
-	}
-
-	public void setNodeList(List<PlayNode> nodeList) {
-		this.nodeList = nodeList;
-	}
 
 	public boolean isRun() {
 		return isRun;
