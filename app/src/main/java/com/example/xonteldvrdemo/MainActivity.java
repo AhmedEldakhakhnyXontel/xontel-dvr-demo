@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
             if (isFinishing()) {
                 return;
             }
-            Log.e("PlayActivity2", "state:" + msg.toString());
-            Log.e("PlayActivity2", "state:" + msg.what);
+            Log.e("MainActivity", "state:" + msg.toString());
+            Log.e("MainActivity", "state:" + msg.what);
             if (msg.what == SHOW_STATE) {
-                Log.e("PlayActivity2", "state:" + msg.arg1);
+                Log.e("MainActivity", "state:" + msg.arg1);
             }
             super.handleMessage(msg);
         }
