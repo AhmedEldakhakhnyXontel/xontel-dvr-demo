@@ -18,15 +18,10 @@ import com.Player.Source.AudioDecodeListener;
 import com.Player.Source.TAlarmFrame;
 import com.Player.web.response.ResponseServer;
 import com.Player.web.websocket.ClientCore;
-import com.example.xonteldvrdemo.umeyesdk.api.WebSdkApi;
-import com.example.xonteldvrdemo.umeyesdk.utils.Constants;
 import com.example.xonteldvrdemo.umeyesdk.utils.MyAudioDecodeThread;
 import com.example.xonteldvrdemo.umeyesdk.utils.MyRecoredThread;
 import com.example.xonteldvrdemo.umeyesdk.utils.MyVideoDecodeThread;
-import com.example.xonteldvrdemo.umeyesdk.utils.Utility;
 import com.video.h264.DecodeDisplay;
-
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public static final byte SHOW_STATE = 0;
@@ -97,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         ClientCore.setHttps(null);
         // SETUP HOST
-        clientCore.setupHost(Constants.server, 6203, Utility.getImsi(this), DAX_LANGUAGE, Constants.custom_flag, String.valueOf(Utility.GetVersionCode(this)), "", "");//
+        //clientCore.setupHost(Constants.server, 6203, Utility.getImsi(this), DAX_LANGUAGE, Constants.custom_flag, String.valueOf(Utility.GetVersionCode(this)), "", "");//
 
         // if isAPLanMode true, will only use local lan to find device and no need to handle message in handler because it will always be null
         clientCore.getCurrentBestServer(new Handler() {

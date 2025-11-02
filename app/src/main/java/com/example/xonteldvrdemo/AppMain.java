@@ -9,10 +9,7 @@ import com.Player.Core.PlayerClient;
 import com.Player.Core.PlayerCore;
 import com.Player.Core.Utils.CommenUtil;
 import com.Player.web.websocket.ClientCore;
-import com.example.xonteldvrdemo.umeyesdk.entity.PlayNode;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class AppMain extends Application {
 	private PlayerClient playerclient;
