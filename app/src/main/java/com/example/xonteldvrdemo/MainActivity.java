@@ -32,26 +32,6 @@ public class MainActivity extends AppCompatActivity {
     ImageView img;
     Button btnPlay;
     AppMain appMain;
-    @SuppressLint("HandlerLeak")
-    private final Handler handler = new Handler() {
-
-
-        @Override
-        public void handleMessage(Message msg) {
-            // TODO Auto-generated method stub
-            if (isFinishing()) {
-                return;
-            }
-            Log.e("MainActivity", "state:" + msg.toString());
-            Log.e("MainActivity", "state:" + msg.what);
-            if (msg.what == SHOW_STATE) {
-                Log.e("MainActivity", "state:" + msg.arg1);
-            }
-            super.handleMessage(msg);
-        }
-
-    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new StateThread().start();
     }
 
     private void initViews() {
@@ -107,6 +86,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class StateThread extends Thread {
+        @SuppressLint("HandlerLeak")
+        Handler handler = new Handler() {
+
+
+            @Override
+            public void handleMessage(Message msg) {
+                // TODO Auto-generated method stub
+                if (isFinishing()) {
+                    return;
+                }
+                Log.e("MainActivity", "state:" + msg.toString());
+                Log.e("MainActivity", "state:" + msg.what);
+                if (msg.what == SHOW_STATE) {
+                    Log.e("MainActivity", "state:" + msg.arg1);
+                }
+                super.handleMessage(msg);
+            }
+        };
 
         @Override
         public void run() {
