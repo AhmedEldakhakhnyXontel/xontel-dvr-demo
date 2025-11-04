@@ -1,6 +1,7 @@
 package com.example.xonteldvrdemo;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -13,6 +14,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.Player.Core.PlayerCore;
+import com.Player.Source.SDKError;
+import com.Player.Source.SetRecodeVideoListener;
 import com.Player.Source.TAlarmFrame;
 import com.Player.web.response.ResponseServer;
 import com.Player.web.websocket.ClientCore;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     PlayerCore playerCore;
     ClientCore clientCore;
     ImageView img;
-    Button btnPlay, snapshot;
+    Button btnPlay, snapshot, record;
     AppMain appMain;
 
     @Override
@@ -56,8 +59,36 @@ public class MainActivity extends AppCompatActivity {
         img = findViewById(R.id.imgLive);
         btnPlay = findViewById(R.id.btnPlay);
         snapshot = findViewById(R.id.snapshot);
+        record = findViewById(R.id.record);
+
         btnPlay.setOnClickListener(v -> play());
         snapshot.setOnClickListener(v -> takeSnapshot());
+        record.setOnClickListener(v -> recordVideo());
+    }
+
+    private void recordVideo() {
+        playerCore.setRecodeVideoListener(new SetRecodeVideoListener() {
+            @Override
+            public void record(boolean b, Bitmap bitmap) {
+                Log.e("MainActivity", "recording: " + b);
+            }
+
+            @Override
+            public void finish(boolean b, String s) {
+                Log.e("MainActivity", "record finish: " + b + " path: " + s);
+            }
+        });
+
+        if (playerCore.GetIsSnapVideo()) {
+            playerCore.SetSnapVideo(false);
+        } else {
+            if (playerCore.GetPlayerState() == SDKError.Statue_PLAYING) {
+
+                File albumPath = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                playerCore.SetVideoPath(albumPath.getAbsolutePath(), "Xontel DVR Demo " + System.currentTimeMillis() + ".mp4");
+                playerCore.SetSnapVideo(true);
+            }
+        }
     }
 
     private void takeSnapshot() {
