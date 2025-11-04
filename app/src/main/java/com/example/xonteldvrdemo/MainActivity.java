@@ -1,7 +1,6 @@
 package com.example.xonteldvrdemo;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,16 +11,10 @@ import android.widget.ImageView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.Player.Core.PlayerClient;
 import com.Player.Core.PlayerCore;
-import com.Player.Source.AudioDecodeListener;
 import com.Player.Source.TAlarmFrame;
 import com.Player.web.response.ResponseServer;
 import com.Player.web.websocket.ClientCore;
-import com.example.xonteldvrdemo.umeyesdk.utils.MyAudioDecodeThread;
-import com.example.xonteldvrdemo.umeyesdk.utils.MyRecoredThread;
-import com.example.xonteldvrdemo.umeyesdk.utils.MyVideoDecodeThread;
-import com.video.h264.DecodeDisplay;
 
 public class MainActivity extends AppCompatActivity {
     public static final byte SHOW_STATE = 0;
