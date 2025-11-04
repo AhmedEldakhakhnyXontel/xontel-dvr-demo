@@ -33,11 +33,21 @@ public class MainActivity extends AppCompatActivity {
     public static int DAX_CHANNEL_NUMBER = 2;
     public static int DAX_LANGUAGE = 1; //2 is for chinese
 
-    PlayerCore playerCore;
-    ClientCore clientCore;
-    ImageView img;
-    Button btnPlay, snapshot, record;
-    AppMain appMain;
+    private PlayerCore playerCore;
+    private ClientCore clientCore;
+    private ImageView img;
+    private Button btnPlay, snapshot, record;
+    private final SetRecodeVideoListener recodeVideoListener = new SetRecodeVideoListener() {
+        @Override
+        public void record(boolean b, Bitmap bitmap) {
+            Log.e("MainActivity", "recording: " + b);
+        }
+
+        @Override
+        public void finish(boolean b, String s) {
+            Log.e("MainActivity", "record finish: " + b + " path: " + s);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         initViews();
-        appMain = (AppMain) this.getApplicationContext();
         clientCore = ClientCore.getInstance();
         initPlayCore();
     }
@@ -62,17 +71,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void recordVideo() {
-        playerCore.setRecodeVideoListener(new SetRecodeVideoListener() {
-            @Override
-            public void record(boolean b, Bitmap bitmap) {
-                Log.e("MainActivity", "recording: " + b);
-            }
 
-            @Override
-            public void finish(boolean b, String s) {
-                Log.e("MainActivity", "record finish: " + b + " path: " + s);
-            }
-        });
+        playerCore.setRecodeVideoListener(recodeVideoListener);
 
         if (playerCore.GetIsSnapVideo()) {
             playerCore.SetSnapVideo(false);
