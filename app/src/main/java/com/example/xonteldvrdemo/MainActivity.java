@@ -2,6 +2,7 @@ package com.example.xonteldvrdemo;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.Player.Core.PlayerCore;
 import com.Player.Source.TAlarmFrame;
 import com.Player.web.response.ResponseServer;
 import com.Player.web.websocket.ClientCore;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
     public static final byte SHOW_STATE = 0;
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     PlayerCore playerCore;
     ClientCore clientCore;
     ImageView img;
-    Button btnPlay;
+    Button btnPlay, snapshot;
     AppMain appMain;
 
     @Override
@@ -52,7 +55,16 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         img = findViewById(R.id.imgLive);
         btnPlay = findViewById(R.id.btnPlay);
+        snapshot = findViewById(R.id.snapshot);
         btnPlay.setOnClickListener(v -> play());
+        snapshot.setOnClickListener(v -> takeSnapshot());
+    }
+
+    private void takeSnapshot() {
+        File albumPath = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        playerCore.SetAlbumPath(albumPath.getAbsolutePath(), "Xontel DVR Demo " + System.currentTimeMillis() + ".jpg");
+        playerCore.setSnapListener((b, s, bitmap) -> Log.e("MainActivity", "b" + b + " snapshot path: " + s));
+        playerCore.SetSnapPicture(true);
     }
 
     @SuppressLint("HandlerLeak")

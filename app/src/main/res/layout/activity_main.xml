@@ -23,10 +23,20 @@
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Play"
         app:layout_constraintTop_toBottomOf="@+id/imgLive" />
+
+    <Button
+        android:id="@+id/snapshot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="snapshot"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnPlay" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
