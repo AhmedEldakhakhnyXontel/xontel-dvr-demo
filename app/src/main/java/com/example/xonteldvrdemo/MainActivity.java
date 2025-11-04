@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static int DAX_VENDOR_ID = 1009;
     public static int DAX_CHANNEL_NUMBER = 2;
     public static int DAX_LANGUAGE = 1; //2 is for chinese
-    PlayerClient playClient;
+
     PlayerCore playerCore;
     ClientCore clientCore;
     ImageView img;
@@ -67,10 +67,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         appMain = (AppMain) this.getApplicationContext();
-        playClient = appMain.getPlayerclient();
         clientCore = ClientCore.getInstance();
         initPlayCore();
-        customDecode();
     }
 
     @Override
@@ -87,12 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("HandlerLeak")
     private void play() {
-
         ClientCore.isAPLanMode = true;
-
         ClientCore.setHttps(null);
-        // SETUP HOST
-        //clientCore.setupHost(Constants.server, 6203, Utility.getImsi(this), DAX_LANGUAGE, Constants.custom_flag, String.valueOf(Utility.GetVersionCode(this)), "", "");//
 
         // if isAPLanMode true, will only use local lan to find device and no need to handle message in handler because it will always be null
         clientCore.getCurrentBestServer(new Handler() {
@@ -103,12 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 if (responseServer == null) {
                     // we asume that we are in local network
                     playerCore.StopAsync();
-                    //    playerCore.PlayP2P(Constants.UMID, Constants.user, Constants.password, Constants.iChNo, 1);
                     playerCore.PlayAddress(DAX_VENDOR_ID, DAX_ADDRESS, DAX_PORT, DAX_USER, DAX_PASSWORD, DAX_CHANNEL_NUMBER, 1);
                 }
                 super.handleMessage(msg);
-
-
             }
         });
 
@@ -120,30 +111,6 @@ public class MainActivity extends AppCompatActivity {
         playerCore.SetPPtMode(false);
         playerCore.isQueryDevInfo = true;
         playerCore.openWebRtcNs = true;
-    }
-
-    public void customDecode() {
-        playerCore.setAudioDecodeListener(new AudioDecodeListener() {
-
-            @Override
-            public void StartTalk(PlayerCore playercore) { // TODO
-                // 对讲、录音线程
-                MyRecoredThread myRecoredThread = new MyRecoredThread(playercore);
-                myRecoredThread.start();
-            }
-
-            @Override
-            public void StartAudioDecode(PlayerCore playercore, DecodeDisplay decodeDisplay) { // TODO Auto-generated method stub //音频解码播放线程
-                MyAudioDecodeThread AudioThreadDecode = new MyAudioDecodeThread(playercore, decodeDisplay);
-                AudioThreadDecode.start();
-            }
-
-            @Override
-            public void startVideoDecode(DecodeDisplay arg0) { // 视频解码线程
-                MyVideoDecodeThread defualtVideoDecodeThread = new MyVideoDecodeThread(arg0);
-                defualtVideoDecodeThread.start();
-            }
-        });
     }
 
     class StateThread extends Thread {
