@@ -50,11 +50,6 @@ public class MainActivity extends AppCompatActivity {
         initPlayCore();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     private void initViews() {
         img = findViewById(R.id.imgLive);
         btnPlay = findViewById(R.id.btnPlay);
