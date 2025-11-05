@@ -11,16 +11,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.Player.Core.PlayerCore;
 import com.Player.Source.SDKError;
 import com.Player.Source.SetRecodeVideoListener;
 import com.Player.Source.TAlarmFrame;
+import com.Player.Source.TDevChannelInfo;
 import com.Player.web.response.ResponseServer;
 import com.Player.web.websocket.ClientCore;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final byte SHOW_STATE = 0;
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private PlayerCore playerCore;
     private ClientCore clientCore;
     private ImageView img;
-    private Button btnPlay, snapshot, record;
+    private Button btnPlay, snapshot, record, listChannels;
     private final SetRecodeVideoListener recodeVideoListener = new SetRecodeVideoListener() {
         @Override
         public void record(boolean b, Bitmap bitmap) {
@@ -64,10 +68,19 @@ public class MainActivity extends AppCompatActivity {
         btnPlay = findViewById(R.id.btnPlay);
         snapshot = findViewById(R.id.snapshot);
         record = findViewById(R.id.record);
+        listChannels = findViewById(R.id.listChannels);
 
         btnPlay.setOnClickListener(v -> play());
         snapshot.setOnClickListener(v -> takeSnapshot());
         record.setOnClickListener(v -> recordVideo());
+        listChannels.setOnClickListener(v -> {
+            new Thread(() -> {
+                List<TDevChannelInfo> channels = getChannelList(playerCore, DAX_USER);
+                for (TDevChannelInfo channel : channels) {
+                    Log.e("MainActivity", "Channel: " + channel.toString());
+                }
+            }).start();
+        });
     }
 
     private void recordVideo() {
@@ -96,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("HandlerLeak")
     private void play() {
         ClientCore.isAPLanMode = true;
+        playerCore.iCustom = true;
         ClientCore.setHttps(null);
 
         // if isAPLanMode true, will only use local lan to find device and no need to handle message in handler because it will always be null
@@ -123,6 +137,30 @@ public class MainActivity extends AppCompatActivity {
         playerCore.openWebRtcNs = true;
     }
 
+
+    @WorkerThread
+    private List<TDevChannelInfo> getChannelList(PlayerCore playerCore,String userName) {
+        final List<TDevChannelInfo> channels = new ArrayList<>();
+        if (userName == null || userName.isEmpty()) {
+            Log.w("getChannelList", "Username is empty");
+            return channels;
+        }
+
+        // Prepare channel iterator on the device
+        int rc = playerCore.QueryChannleList(userName); // SDK: 0 == success
+        if (rc != 0) {
+            Log.d("getChannelList", "Failed to query channel list, rc=" + rc);
+            return channels;
+        }
+
+        // Pull items until SDK returns null
+        for (;;) {
+            TDevChannelInfo ch = playerCore.GetNextChannel();
+            if (ch == null) break;
+            channels.add(TDevChannelInfo.copy(ch)); // copy: avoids buffer reuse issues
+        }
+        return channels;
+    }
     class StateThread extends Thread {
         @SuppressLint("HandlerLeak")
         Handler handler = new Handler() {
