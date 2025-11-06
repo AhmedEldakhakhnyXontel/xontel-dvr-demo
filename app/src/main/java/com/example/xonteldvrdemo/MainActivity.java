@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Button;
@@ -106,26 +108,33 @@ public class MainActivity extends AppCompatActivity {
         playerCore.SetSnapPicture(true);
     }
 
-    @SuppressLint("HandlerLeak")
     private void play() {
         ClientCore.isAPLanMode = true;
         playerCore.iCustom = true;
         ClientCore.setHttps(null);
+        // for UI only
+        Handler main = new Handler(Looper.getMainLooper());
+        HandlerThread netThread = new HandlerThread("best-server-cb");
+        netThread.start();
 
-        // if isAPLanMode true, will only use local lan to find device and no need to handle message in handler because it will always be null
-        clientCore.getCurrentBestServer(new Handler() {
-            @SuppressLint("HandlerLeak")
+        Handler.Callback callback = new Handler.Callback() {
             @Override
-            public void handleMessage(Message msg) { // TODO
+            public boolean handleMessage(Message msg) {
                 ResponseServer responseServer = (ResponseServer) msg.obj;
                 if (responseServer == null) {
                     // we asume that we are in local network
-                    playerCore.StopAsync();
-                    playerCore.PlayAddress(DAX_VENDOR_ID, DAX_ADDRESS, DAX_PORT, DAX_USER, DAX_PASSWORD, DAX_CHANNEL_NUMBER, 1);
+                    main.post(() -> {
+                        playerCore.StopAsync();
+                        playerCore.PlayAddress(DAX_VENDOR_ID, DAX_ADDRESS, DAX_PORT, DAX_USER, DAX_PASSWORD, DAX_CHANNEL_NUMBER, 1);
+                    });
                 }
-                super.handleMessage(msg);
+                return true;
             }
-        });
+        };
+        Handler netHandler = new Handler(netThread.getLooper(), callback );
+
+        // if isAPLanMode true, will only use local lan to find device and no need to handle message in handler because it will always be null
+        clientCore.getCurrentBestServer(netHandler);
 
     }
 
